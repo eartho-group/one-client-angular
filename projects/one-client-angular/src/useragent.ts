@@ -1,1 +1,1 @@
-export default { name: '@eartho/one-client-angular', version: '1.0.2' };
+export default { name: '@eartho/one-client-angular', version: '1.1.2' };

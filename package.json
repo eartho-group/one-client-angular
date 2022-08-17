@@ -35,7 +35,7 @@
     "@angular/platform-browser": "^12.2.16",
     "@angular/platform-browser-dynamic": "^12.2.16",
     "@angular/router": "^12.2.16",
-    "@eartho/one-client-js": "^1.0.21",
+    "@eartho/one-client-js": "^1.1.8",
     "rxjs": "^6.6.7",
     "tslib": "^2.4.0",
     "zone.js": "~0.11.6"
