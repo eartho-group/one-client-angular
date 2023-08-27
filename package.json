@@ -38,7 +38,7 @@
     "@eartho/one-client-js": "^1.2.1",
     "rxjs": "^6.6.7",
     "tslib": "^2.4.0",
-    "zone.js": "~0.11.6"
+    "zone.js": "~0.11.8"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.0.0",
