@@ -58,8 +58,6 @@ describe('AuthService', () => {
     spyOn(earthoOneClient, 'buildAuthorizeUrl').and.resolveTo('/authorize');
     spyOn(earthoOneClient, 'buildLogoutUrl').and.returnValue('/v2/logout');
 
-
-
     window.history.replaceState(null, '', '');
 
     moduleSetup = {
@@ -247,7 +245,7 @@ describe('AuthService', () => {
         __raw: 'idToken',
         exp: 1602887231,
         iat: 1602883631,
-        iss: 'https://one.eartho.world/',
+        iss: 'https://one.eartho.io/',
       };
 
       (earthoOneClient.isConnected as jasmine.Spy).and.resolveTo(true);
@@ -264,14 +262,14 @@ describe('AuthService', () => {
         __raw: 'idToken',
         exp: 1602887231,
         iat: 1602883631,
-        iss: 'https://one.eartho.world/',
+        iss: 'https://one.eartho.io/',
       };
 
       const claims2: IdToken = {
         __raw: 'another_idToken',
         exp: 1613108744,
         iat: 1613105547,
-        iss: 'https://one.eartho.world/',
+        iss: 'https://one.eartho.io/',
       };
 
       (earthoOneClient.isConnected as jasmine.Spy).and.resolveTo(true);
@@ -298,7 +296,7 @@ describe('AuthService', () => {
         __raw: 'idToken',
         exp: 1602887231,
         iat: 1602883631,
-        iss: 'https://one.eartho.world/',
+        iss: 'https://one.eartho.io/',
       };
 
       (earthoOneClient.isConnected as jasmine.Spy).and.resolveTo(true);
@@ -584,16 +582,12 @@ describe('AuthService', () => {
         id_token: '456',
         expires_in: 2,
       };
-      (earthoOneClient.getIdToken as jasmine.Spy).and.resolveTo(
-        tokenResponse
-      );
+      (earthoOneClient.getIdToken as jasmine.Spy).and.resolveTo(tokenResponse);
 
-      service
-        .connectSilently({ detailedResponse: true })
-        .subscribe((token) => {
-          expect(token).toEqual(tokenResponse);
-          done();
-        });
+      service.connectSilently({ detailedResponse: true }).subscribe((token) => {
+        expect(token).toEqual(tokenResponse);
+        done();
+      });
     });
 
     it('should record errors in the error$ observable', (done) => {
@@ -646,7 +640,9 @@ describe('AuthService', () => {
     it('should record errors in the error$ observable', (done) => {
       const errorObj = new Error('An error has occured');
 
-      (earthoOneClient.getTokenWithPopup as jasmine.Spy).and.rejectWith(errorObj);
+      (earthoOneClient.getTokenWithPopup as jasmine.Spy).and.rejectWith(
+        errorObj
+      );
 
       service.getAccessTokenWithPopup().subscribe({
         error: () => {},
@@ -661,7 +657,9 @@ describe('AuthService', () => {
     it('should bubble errors', (done) => {
       const errorObj = new Error('An error has occured');
 
-      (earthoOneClient.getTokenWithPopup as jasmine.Spy).and.rejectWith(errorObj);
+      (earthoOneClient.getTokenWithPopup as jasmine.Spy).and.rejectWith(
+        errorObj
+      );
 
       service.getAccessTokenWithPopup().subscribe({
         error: (err: Error) => {
@@ -766,7 +764,9 @@ describe('AuthService', () => {
       const localService = createService();
 
       localService.handleRedirectCallback(url).subscribe(() => {
-        expect(earthoOneClient.handleRedirectCallback).toHaveBeenCalledWith(url);
+        expect(earthoOneClient.handleRedirectCallback).toHaveBeenCalledWith(
+          url
+        );
         done();
       });
     });
